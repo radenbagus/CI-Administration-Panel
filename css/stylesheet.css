@@ -1,0 +1,261 @@
+@import url("style.css");
+
+/* 
+ * Import font faces 
+ */
+
+@import url("fonts/stylesheet.css");
+
+a {
+	text-decoration: none;
+	color: #808080;
+
+}
+
+p {
+	font-family: "MuseoSans500", arial;
+	color: #7f7f7f;
+}
+#container {
+	min-height: 100%;
+	position: relative;
+	width: 1024px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+header {
+	width: 1024px;
+	height: 225px;
+	margin-top: 35px;
+}
+
+footer {
+	height: 40px;
+}
+#logo {
+	background-image: url('/img/logo.png');
+	background-repeat: no-repeat;
+	width: 325px;
+	height: 160px;
+	margin-right: auto;
+	margin-left: auto;
+	cursor: pointer;
+}
+
+#menu {
+	
+	margin-top: 20px;
+	border-top: 1px solid #adadad;
+	border-left: 1px solid #adadad;
+	border-right: 1px solid #adadad;
+	padding: 1px;
+	height: 30px;
+ 
+}
+
+#menu ul {
+	padding: 0;
+	margin: 0;
+	
+	display: block;
+	list-style: none;
+
+
+}
+#menu ul li {
+	float: left;
+	line-height: 30px;
+}
+#menu ul li a {
+	color: #808080;
+	font-size: 12px;
+	font-family: "MuseoSans500", arial;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	padding-left: 18px;
+	padding-right: 13px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+}
+.leaf {
+	background-image: url('/img/leaf.png');
+	background-repeat: no-repeat;
+	background-position-x: -2px;
+}
+#menu ul li a:hover{
+	background-color: #cccbcb;
+	color: #000;
+}
+#menu .selected {
+	background-color: #cccbcb;
+	color: #000;
+}
+#menu .selected a {
+	background-color: #cccbcb;
+	color: #000;
+}
+#primary_nav {
+	float: left;
+}
+#secondary_nav {
+	float: right;
+}
+
+#main .btop {		
+	border-top: 1px solid #adadad;
+}
+#main .bbottom {		
+	border-bottom: 1px solid #adadad;
+}
+#main .bleft {		
+	border-left: 1px solid #adadad;
+}
+#main .bright {		
+	border-right: 1px solid #adadad;
+}
+
+.topindent {
+	margin-top: 80px;
+}
+.leftindent {
+	margin-left: 30px;
+}
+.rightindent {
+	margin-right: 65px;
+
+}
+#profileholder_text {
+	font-size: 12px;
+	width: 500px;
+	height: auto;
+	float: left;
+	line-height: 1.5em;
+}
+#profileholder_image {
+	width: 510px;
+	height: auto;
+	float: right;
+	margin-right: 6px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+
+
+#slides {
+	width: 1024px;
+	background-color: #f1f0f0;
+}
+.pagination {
+	width:200px;
+	float: right;
+position: relative;
+bottom: -3px;
+right: 12px;
+}
+
+.pagination li {
+	float:right;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	/*
+	position: absolute;
+	right: 10px;
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(/img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+	*/
+	
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(/img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+	
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}
+
+#gallery_nav {
+	margin-top: 8px;
+}
+
+#gallery_nav ul {
+	padding: 0;
+	margin: 0;
+	display: block;
+	list-style: none;
+}
+
+#gallery_nav ul li {
+	float: left;
+	line-height: 30px;
+}
+#gallery_nav ul li a {
+	color: #808080;
+	font-size: 12px;
+	font-family: "MuseoSans500", arial;
+	padding-left: 13px;
+	padding-right: 10px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+}
+
+#gallery_nav ul li a:hover{
+	background-color: #cccbcb;
+	color: #000;
+}
+#gallery_nav .selected {
+	background-color: #cccbcb;
+	color: #000;
+}
+#gallery_nav .selected a {
+	background-color: #cccbcb;
+	color: #000;
+}
+
+.arrow {
+height: 86px;
+width: 60px;
+position: absolute;
+background: url('/img/arrows.png') no-repeat;
+cursor: pointer;
+z-index: 900;
+top: 240px;
+}
+
+.previous {
+background-position: left top;
+margin-top: 300px;
+left: 0;
+}
+
+.next {
+background-position: right top;
+right: 0;
+margin-top: 300px;
+}
+.museo {
+		font-family: "MuseoSans500", arial;
+
+}
+.grey {
+	color: #7f7f7f;
+}
+h1 {
+	font-family: "MuseoSans500", arial;
+}

@@ -1,0 +1,19 @@
+[02-Jan-2012 17:56:14] PHP Warning:  require_once(/home/revalori/public_html/jefflincoln/system/core/CodeIgniter.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/revalori/public_html/jefflincoln/index.php on line 202
+[02-Jan-2012 17:56:14] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/revalori/public_html/jefflincoln/system/core/CodeIgniter.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/revalori/public_html/jefflincoln/index.php on line 202
+[02-Jan-2012 18:16:35] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/revalori/public_html/jefflincoln/application/config/config.php on line 37
+[04-Jan-2012 19:26:52] PHP Fatal error:  Class 'Main' not found in /home/revalori/public_html/jefflincoln/system/core/Loader.php on line 303
+[05-Jan-2012 17:06:32] PHP Parse error:  syntax error, unexpected ')' in /home/revalori/public_html/jefflincoln/application/controllers/gallery.php on line 53
+[05-Jan-2012 17:46:56] PHP Fatal error:  Cannot use object of type stdClass as array in /home/revalori/public_html/jefflincoln/application/controllers/work.php on line 60
+[05-Jan-2012 17:47:18] PHP Fatal error:  Cannot use [] for reading in /home/revalori/public_html/jefflincoln/application/controllers/work.php on line 60
+[05-Jan-2012 17:47:26] PHP Fatal error:  Cannot use object of type stdClass as array in /home/revalori/public_html/jefflincoln/application/controllers/work.php on line 60
+[05-Feb-2012 13:41:54] PHP Fatal error:  Call to undefined method admin_model::add_new() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 188
+[05-Feb-2012 13:42:12] PHP Fatal error:  Call to undefined method admin_model::update_names() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 116
+[05-Feb-2012 13:48:19] PHP Fatal error:  Call to undefined method admin_model::update_names() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 116
+[05-Feb-2012 13:49:12] PHP Fatal error:  Call to undefined method admin_model::add_new() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 188
+[05-Feb-2012 13:55:04] PHP Fatal error:  Call to undefined method admin_model::add_new() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 185
+[05-Feb-2012 13:57:02] PHP Fatal error:  Call to undefined method admin_model::add_new() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 185
+[05-Feb-2012 14:35:46] PHP Fatal error:  Call to undefined method admin_model::add_new() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 185
+[05-Feb-2012 14:39:40] PHP Fatal error:  Call to undefined method admin_model::update_pid_front() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 195
+[05-Feb-2012 14:39:58] PHP Fatal error:  Call to undefined method admin_model::update_pid_front() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 195
+[05-Feb-2012 14:39:58] PHP Fatal error:  Call to undefined method admin_model::update_pid_front() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 195
+[05-Feb-2012 14:40:20] PHP Fatal error:  Call to undefined method admin_model::update_pid_front() in /home2/idealine/public_html/panel/application/controllers/admin.php on line 195

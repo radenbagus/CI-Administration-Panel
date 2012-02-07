@@ -12,7 +12,9 @@ class admin extends CI_Controller {
 	var $data = '';
 	
 	function __construct() {
+		
 		parent::__construct();
+		
 		$this -> load -> model('admin_model', '', TRUE);
 		$this -> load -> library('session');
 		$this -> load -> helper('url');
@@ -100,21 +102,19 @@ class admin extends CI_Controller {
 		$this -> _check_login();
 		$this -> _selected("logos");
 		
-		
+		$this -> data['deleted'] = FALSE;
 		$this -> data['sinfo'] = 0;
+		
 		
 		switch ($action) {
 			
 			case 'save' :
-			
 				if ($this->input->post('name')) {
-					
 					if($sid) {
 						$result = $this -> admin_model -> update_names($sid);
 					}
-					
 					if ($result) {  $this -> data['result'] = TRUE; }
-                                        }
+                 }
 				
 				break;
 				
@@ -159,20 +159,51 @@ class admin extends CI_Controller {
 				
 				break;
 				
+			case 'delete_project' :
+				
+				$this -> admin_model -> delete("gallery_cat_secondary", $sid);
+				
+				$this -> data['deleted'] = TRUE;
+				$categoria = $this -> data['info'] = 1;
+				$sid = $this -> data['sinfo'] = 1;
+
+				$this -> data['cats'] = $this -> admin_model -> get("gallery_cat_primary");
+				$this -> data['scats'] = $this -> admin_model -> get_orderby("gallery_cat_secondary", "id", "pid = $categoria");
+				
+				$this -> data['logos'] = $this -> admin_model -> get_orderby("gallery_photos", "weight", "sid = $sid");
+				$this -> data['catinfo'] = $this -> admin_model -> get_one("gallery_cat_secondary", "id = $sid");
+				$this -> data['p_catinfo'] = $this -> admin_model -> get_one("gallery_cat_primary", "id = $categoria");
+
+				$this -> load -> view('admin/pages/images', $this -> data);			
+				
+				
+				break;
+				
 			case 'new' :
 				
-				if ($this->input->post('name')) {
-					$this -> admin_model -> add_new();
+				if (($this->input->post('addpid')) && ($this->input->post('addname'))) {
+					$result = $this -> admin_model -> add_new();
+					
+					if($result) echo "TRUE";
 				}
 				
 				break;
 				
+			case 'front_select' : 
+			
+				if (($this->input->post('pid')) && ($this->input->post('photo_id'))) {
+					$result = $this -> admin_model -> update_pid_front();
+					
+					if($result) echo "TRUE";
+				}
+				
+			break;
 						
 			case 'view' :
 				
 				$categoria = $aid;
-				$this -> data['info'] = $categoria;
 				
+				$this -> data['info'] = $categoria;
 				$this -> data['cats'] = $this -> admin_model -> get("gallery_cat_primary");
 				$this -> data['scats'] = $this -> admin_model -> get_orderby("gallery_cat_secondary", "id", "pid = $categoria");
 				
@@ -182,7 +213,7 @@ class admin extends CI_Controller {
 					$findid = min($this -> data['scats']);
 					$sid = $findid->id;
 				}
-				
+				$this -> data['p_catinfo'] = $this -> admin_model -> get_one("gallery_cat_primary", "id = $categoria");
 				$this -> data['catinfo'] = $this -> admin_model -> get_one("gallery_cat_secondary", "id = $sid");
 				$this -> data['logos'] = $this -> admin_model -> get_orderby("gallery_photos", "weight", "sid = $sid");
 				$this -> load -> view('admin/pages/images', $this -> data);
@@ -194,7 +225,7 @@ class admin extends CI_Controller {
 
 				$categoria = $this -> data['info'] = 1;
 				$sid = $this -> data['sinfo'] = 1;
-
+				$this -> data['p_catinfo'] = $this -> admin_model -> get_one("gallery_cat_primary", "id = $categoria");
 				$this -> data['cats'] = $this -> admin_model -> get("gallery_cat_primary");
 				$this -> data['scats'] = $this -> admin_model -> get_orderby("gallery_cat_secondary", "id", "pid = $categoria");
 				
