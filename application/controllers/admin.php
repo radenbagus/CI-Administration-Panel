@@ -11,6 +11,7 @@ class admin extends CI_Controller {
 	var $logged = '';
 	var $data = '';
 	
+    
 	function __construct() {
 		
 		parent::__construct();
@@ -29,12 +30,14 @@ class admin extends CI_Controller {
 		$this -> data['post'] = FALSE;
 	}
 
+    
 	function index() {
 		$this -> _check_login();
 		$this -> _selected("videos");
 		$this -> images();
 	}
 
+    
 	function login() {
 		if ($this -> logged) {
 			redirect('/admin/');
@@ -66,9 +69,20 @@ class admin extends CI_Controller {
 				$this -> data['message'] = "Todos los campos son obligatorios";
 			}
 		}
-		$this -> load -> view('admin/pages/login', $this -> data);
-	}
+        
+        
+        if ($this->agent->is_mobile()) {
+            
+            $this->load->view('admin/mobile/login', $this->data);
+            
+        } else {   
+            
+            $this->load->view('admin/pages/login', $this -> data);
+            
+        }
+    }
 
+    
 	function config($action = null, $aid = null) {
 		$this -> _check_login();
 		$this -> _selected("config");
@@ -91,12 +105,20 @@ class admin extends CI_Controller {
 				$this -> load -> view('admin/pages/config', $this -> data);
 				break;
 			default :
+            
 				$this -> data['users'] = $this -> admin_model -> get("admin_users");
-				$this -> load -> view('admin/pages/config', $this -> data);
-				break;
+            
+                if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/config', $this->data);
+                } else {   
+                    $this -> load -> view('admin/pages/config', $this -> data);
+                }
+			
+            break;
 		}
 	}
 
+    
 	function images($action = NULL, $aid = NULL, $sid = NULL) {
 		$this -> data['result'] = FALSE;
 		$this -> _check_login();
@@ -174,8 +196,11 @@ class admin extends CI_Controller {
 				$this -> data['catinfo'] = $this -> admin_model -> get_one("gallery_cat_secondary", "id = $sid");
 				$this -> data['p_catinfo'] = $this -> admin_model -> get_one("gallery_cat_primary", "id = $categoria");
 
-				$this -> load -> view('admin/pages/images', $this -> data);			
-				
+				if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/images', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/images', $this -> data);			
+                }
 				
 				break;
 				
@@ -216,7 +241,12 @@ class admin extends CI_Controller {
 				$this -> data['p_catinfo'] = $this -> admin_model -> get_one("gallery_cat_primary", "id = $categoria");
 				$this -> data['catinfo'] = $this -> admin_model -> get_one("gallery_cat_secondary", "id = $sid");
 				$this -> data['logos'] = $this -> admin_model -> get_orderby("gallery_photos", "weight", "sid = $sid");
-				$this -> load -> view('admin/pages/images', $this -> data);
+				
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/images', $this->data);
+                } else {   
+                    $this -> load -> view('admin/pages/images', $this -> data);
+                }
 				
 				break;
 				
@@ -232,12 +262,17 @@ class admin extends CI_Controller {
 				$this -> data['logos'] = $this -> admin_model -> get_orderby("gallery_photos", "weight", "sid = $sid");
 				$this -> data['catinfo'] = $this -> admin_model -> get_one("gallery_cat_secondary", "id = $sid");
 
-				$this -> load -> view('admin/pages/images', $this -> data);
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/images', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/images', $this -> data);
+                }
 				
 				break;
 		}
 	}
 
+    
 	function sections($action = NULL, $aid = NULL) {
 		
 		$this -> data['result'] = FALSE;
@@ -252,7 +287,14 @@ class admin extends CI_Controller {
 					$this -> admin_model -> update_section($aid);
 				}
 				$this -> data['section'] = $this -> admin_model -> get_one("press", "id = $aid");
-				$this -> load -> view('admin/pages/sliders_edit', $this -> data);
+            
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/sliders_edit', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/sliders_edit', $this -> data);
+                }
+            
 				break;
 				
 			case 'new' :
@@ -270,9 +312,11 @@ class admin extends CI_Controller {
 				$config['allowed_types'] = 'gif|jpg|png';
 				$config['max_size'] = '10000';
 				$this -> load -> library('upload', $config);
-				if (!$this -> upload -> do_upload()) {						$error = array('error' => $this -> upload -> display_errors());
+				if (!$this -> upload -> do_upload()) {						
+                    $error = array('error' => $this -> upload -> display_errors());
 					echo "error";
-				} else {						echo "success";
+				} else {						
+                    echo "success";
 					$data = array('upload_data' => $this -> upload -> data());
 				}
 				break;
@@ -282,9 +326,11 @@ class admin extends CI_Controller {
 				$config['allowed_types'] = 'pdf';
 				$config['max_size'] = '10000';
 				$this -> load -> library('upload', $config);
-				if (!$this -> upload -> do_upload()) {						$error = array('error' => $this -> upload -> display_errors());
+				if (!$this -> upload -> do_upload()) {						
+                    $error = array('error' => $this -> upload -> display_errors());
 					echo "error";
-				} else {						echo "success";
+				} else {						
+                    echo "success";
 					$data = array('upload_data' => $this -> upload -> data());
 				}
 				break;
@@ -296,18 +342,32 @@ class admin extends CI_Controller {
 				if ($result) $this -> data['result'] = TRUE;
 					
 				$this -> data['data'] = $this -> admin_model -> get("press");
-				$this -> load -> view('admin/pages/secciones', $this -> data);
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/secciones', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/secciones', $this -> data);
+                }
+            
 				
 				break;
 				
 			default :
 				
 				$this -> data['data'] = $this -> admin_model -> get("press");
-				$this -> load -> view('admin/pages/secciones', $this -> data);
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/secciones', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/secciones', $this -> data);
+                }
+            
+            
 				break;
 		}
 	}
 
+    
 	function content($action = NULL, $aid = NULL) {
 		
 		$this -> _check_login();
@@ -324,15 +384,26 @@ class admin extends CI_Controller {
 					}
 				}								
 				$this -> data['content'] = $result = $this -> admin_model -> get_one("profile", "version = 1");
-				$this -> load -> view('admin/pages/secciones_edit', $this -> data);
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/secciones_edit', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/secciones_edit', $this -> data);
+                }
+            
 				break;
 			default :
 				$this -> data['content'] = $result = $this -> admin_model -> get_one("profile", "version = 1");
-				$this -> load -> view('admin/pages/secciones_edit', $this -> data);
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/secciones_edit', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/secciones_edit', $this -> data);
+                }
 				break;
 		}
 	}
 
+    
 	function filters($action = NULL, $aid = NULL) {
 		$this -> _check_login();
 		$this -> _selected("filters");
@@ -346,7 +417,13 @@ class admin extends CI_Controller {
 					}
 				}
 				$this -> data['filter'] = $result = $this -> admin_model -> get_filter($aid);
-				$this -> load -> view('admin/pages/filters_edit', $this -> data);
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/filters_edit', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/filters_edit', $this -> data);
+                }
+            
 				break;
 			case 'new' :
 				if ($this -> input -> post('name')) {
@@ -354,22 +431,42 @@ class admin extends CI_Controller {
 					if ($result)
 						$this -> data['result'] = TRUE;
 				}
-				$this -> load -> view('admin/pages/filters', $this -> data);
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/filters', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/filters', $this -> data);
+                }
+            
 				break;
 			case 'delete' :
 				$result = $this -> admin_model -> delete_filter($aid);
 				if ($result)
 					$this -> data['result'] = TRUE;
 				$this -> data['filters'] = $result = $this -> admin_model -> get_filters();
-				$this -> load -> view('admin/pages/filters', $this -> data);
+            
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/filters', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/filters', $this -> data);
+                }
+            
 				break;
 			default :
 				$this -> data['filters'] = $result = $this -> admin_model -> get_filters();
-				$this -> load -> view('admin/pages/filters', $this -> data);
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/filters', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/filters', $this -> data);
+                }
+            
 				break;
 		}
 	}
 
+    
 	function cm($action = NULL) {
 		$this -> _check_login();
 		$this -> _selected("cm");
@@ -388,80 +485,35 @@ class admin extends CI_Controller {
 					}
 				}
 				$this -> data['data'] = $this -> admin_model -> get_content();
-				$this -> load -> view('admin/pages/cm', $this -> data);
+            
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/cm', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/cm', $this -> data);
+                }
+            
 				break;
 			default :
 				$this -> data['data'] = $this -> admin_model -> get_one("profile", "version=1");
-				$this -> load -> view('admin/pages/cm', $this -> data);
+            
+            	if ($this->agent->is_mobile()) {
+                    $this->load->view('admin/mobile/cm', $this->data);
+                } else {   
+				    $this -> load -> view('admin/pages/cm', $this -> data);
+                }
+            
 				break;
 		}
-	}/*
-
-	 function images($action=NULL, $aid=NULL)
-	 {
-	 $this->_check_login();
-	 $this->_selected("images");
-	 switch ($action) {
-	 case 'edit':
-	 if($this->input->post('modify_filter')) {
-	 $result = $this->admin_model->modify_filter($aid);
-	 if($result) { $this->data['result'] = TRUE; }
-	 }
-	 $this->data['filter'] = $result = $this->admin_model->get_filter($aid);
-	 $this->load->view('admin/pages/filters_edit', $this->data);
-	 break;
-	 case 'new':
-	 if($this->input->post('photo')) {
-	 $result = $this->admin_model->create_image();
-	 if($result) $this->data['result'] = TRUE;
-	 }
-	 break;
-	 case 'upload':
-	 $config['upload_path'] =  $_SERVER['DOCUMENT_ROOT'].'/images/studiobig/';
-	 $config['allowed_types'] = 'gif|jpg|png';
-	 $config['max_size']	= '2000';
-	 $config['max_width']  = '1024';
-	 $config['max_height']  = '768';
-	 $this->load->library('upload', $config);
-	 if (!$this->upload->do_upload()) {
-	 $error = array('error' => $this->upload->display_errors());
-	 echo "error";
-	 } else {
-	 $image_resize = $this->upload->data();
-	 $configsize['image_library'] = 'gd2';
-	 $configsize['source_image']	= $image_resize['full_path'];
-	 $configsize['new_image'] = $_SERVER['DOCUMENT_ROOT'].'/images/studiothumb/'.$image_resize['file_name'];
-	 $configsize['maintain_ratio'] = TRUE;
-	 $configsize['width']	 = 200;
-	 $this->load->library('image_lib', $configsize);
-	 $this->image_lib->resize();
-	 if(!$this->image_lib->resize()) {
-	 echo "error";
-	 } else {
-	 echo "success";
-	 }
-	 $data = array('upload_data' => $this->upload->data());
-	 }
-
-	 break;
-	 case 'delete':
-	 $result = $this->admin_model->delete_image($aid);
-	 if($result) $this->data['result'] = TRUE;
-	 $this->data['images'] = $this->admin_model->get_images();
-	 $this->load->view('admin/pages/images', $this->data);
-	 break;
-	 default:
-	 $this->data['images'] = $this->admin_model->get_images();
-	 $this->load->view('admin/pages/images', $this->data);
-	 break;
-	 }
-	 }
-	 */
+	}
+    
+    
 	function logout() {
 		$this -> session -> sess_destroy();
 		redirect('/admin/login/?s=l');
 	}
 
+    
 	function _check_login() {
 		if (!$this -> logged) {
 			redirect('/admin/login');
@@ -469,6 +521,7 @@ class admin extends CI_Controller {
 		}
 	}
 
+    
 	function _selected($sel) {
 		$this -> data['sel_secciones'] = "";
 		$this -> data['sel_sliders'] = "";
