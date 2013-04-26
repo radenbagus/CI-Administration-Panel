@@ -1,4 +1,4 @@
-# Dumping structure for table jefflincoln.admin_users
+# Dumping structure for table admin_users
 CREATE TABLE IF NOT EXISTS `admin_users` (
   `id` int(11) NOT NULL auto_increment,
   `pid` int(50) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
 # Data exporting was unselected.
 
 
-# Dumping structure for table jefflincoln.gallery_cat_primary
+# Dumping structure for table gallery_cat_primary
 CREATE TABLE IF NOT EXISTS `gallery_cat_primary` (
   `id` int(10) NOT NULL auto_increment,
   `name` varchar(80) default NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `gallery_cat_primary` (
 # Data exporting was unselected.
 
 
-# Dumping structure for table jefflincoln.gallery_cat_secondary
+# Dumping structure for table gallery_cat_secondary
 CREATE TABLE IF NOT EXISTS `gallery_cat_secondary` (
   `id` int(10) NOT NULL auto_increment,
   `pid` int(10) default NULL,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `gallery_cat_secondary` (
 # Data exporting was unselected.
 
 
-# Dumping structure for table jefflincoln.gallery_photos
+# Dumping structure for table gallery_photos
 CREATE TABLE IF NOT EXISTS `gallery_photos` (
   `id` int(10) NOT NULL auto_increment,
   `sid` int(10) default NULL,
@@ -71,7 +71,7 @@ INSERT INTO `gallery_cat_primary` (`id`, `name`, `weight`, `front`) VALUES
 INSERT INTO `gallery_cat_secondary` (`id`, `pid`, `name`, `weight`) VALUES
 	(1, 1, 'sub gallery', 0),
 	(2, 1, 'another sub gallery', 2);
-	
+
 
 INSERT INTO `gallery_photos` (`id`, `sid`, `name`, `details`, `weight`, `vh`) VALUES
 	(22, 1, 'Lincoln_1170_5thJMH_5275.png', NULL, 1, NULL),
